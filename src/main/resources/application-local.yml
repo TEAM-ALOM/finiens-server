@@ -1,0 +1,19 @@
+#database
+MYSQL_USERNAME: authentication_local_id
+MYSQL_PASSWORD: bears1278$$
+MYSQL_HOST: localhost
+MYSQL_PORT: 3306
+MYSQL_DB: authentication_local
+
+##EMAIL
+#EMAIL_HOST: smtp.gmail.com
+#EMAIL_PORT: 587
+#EMAIL_ID: davidolleh7319@gmail.com
+#EMAIL_PASSWORD: xgjfsqqincbjlcjb
+#VERIFY_EMAIL_HOST: http://localhost:3306
+#
+##SMS
+#SMS_API_KEY: NCSJKCUV9NTFALHP
+#SMS_API_SECRET_KEY: XBBXHVIKUPIC4YMBM5YLBBT9K7FZBK19
+#SMS_ID: 01082577319
+#SMS_URL: https://api.coolsms.co.kr
