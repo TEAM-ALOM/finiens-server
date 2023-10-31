@@ -37,4 +37,5 @@ out/
 .vscode/
 
 ### application files ###
-src/main/resources/*.yml
+src/main/resources/application-local.yml
+src/main/resources/application-remote.yml
