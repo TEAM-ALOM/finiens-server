@@ -13,7 +13,7 @@ class Station(
     name: String,
     coordinate: Coordinate,
 ): PrimaryKeyStaticEntity() {
-    @Column(name = "station_name", nullable = false)
+    @Column(name = "station_name", nullable = false, unique = true)
     var name: String = name
         protected set
 

@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 class Line(
     lineName: String,
 ): PrimaryKeyStaticEntity() {
-    @Column(name = "line_name", nullable = false)
+    @Column(name = "line_name", nullable = false, unique = true)
     var lineName: String = lineName
         protected set
 }
