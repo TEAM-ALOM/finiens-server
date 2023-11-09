@@ -7,10 +7,10 @@ spring:
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   jpa:
-    generate-ddl: true
+    generate-ddl: false
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 #  mail:
 #    host: ${EMAIL_HOST}
 #    port: ${EMAIL_PORT}
