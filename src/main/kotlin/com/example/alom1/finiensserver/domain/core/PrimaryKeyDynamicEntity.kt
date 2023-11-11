@@ -1,4 +1,4 @@
-package com.example.alom1.finiensserver.core
+package com.example.alom1.finiensserver.domain.core
 
 import com.github.f4b6a3.ulid.UlidCreator
 import jakarta.persistence.Column

@@ -1,6 +1,6 @@
-package com.example.alom1.finiensserver.line.domain
+package com.example.alom1.finiensserver.domain
 
-import com.example.alom1.finiensserver.core.PrimaryKeyStaticEntity
+import com.example.alom1.finiensserver.domain.core.PrimaryKeyStaticEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table

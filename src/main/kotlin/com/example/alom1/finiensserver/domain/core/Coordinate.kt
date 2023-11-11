@@ -1,4 +1,4 @@
-package com.example.alom1.finiensserver.core
+package com.example.alom1.finiensserver.domain.core
 
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable

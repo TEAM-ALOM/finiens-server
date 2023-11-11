@@ -1,7 +1,7 @@
-package com.example.alom1.finiensserver.station.domain
+package com.example.alom1.finiensserver.domain
 
-import com.example.alom1.finiensserver.core.PrimaryKeyStaticEntity
-import com.example.alom1.finiensserver.core.Coordinate
+import com.example.alom1.finiensserver.domain.core.PrimaryKeyStaticEntity
+import com.example.alom1.finiensserver.domain.core.Coordinate
 import jakarta.persistence.Column
 import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
