@@ -1,4 +1,4 @@
-package com.example.alom1.finiensserver.domain
+package com.example.alom1.finiensserver.domain.path
 
 import com.example.alom1.finiensserver.domain.core.PrimaryKeyStaticEntity
 import jakarta.persistence.Column

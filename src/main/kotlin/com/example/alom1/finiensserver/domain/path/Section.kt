@@ -1,23 +1,24 @@
-package com.example.alom1.finiensserver.domain
+package com.example.alom1.finiensserver.domain.path
 
 import com.example.alom1.finiensserver.domain.core.PrimaryKeyStaticEntity
-import com.example.alom1.finiensserver.domain.core.Coordinate
 import jakarta.persistence.*
 
 @Entity
-@Table(name="subway_geometry")
-class Geometry(
-    coordinate: Coordinate,
-    seq: Int,
+@Table(name="subway_station_section")
+class Section(
+    distance: Double,
+    duration: Int,
     upStation: Station,
     downStation: Station,
     line: Line
 ): PrimaryKeyStaticEntity() {
-    @Embedded
-    var coordinate: Coordinate = coordinate
+    @Column(nullable = false)
+    var distance: Double = distance
+        protected set
 
     @Column(nullable = false)
-    var seq: Int = seq
+    var duration: Int = duration
+        protected set
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(nullable = false)
@@ -29,5 +30,6 @@ class Geometry(
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(nullable = false)
     var line: Line = line
 }
