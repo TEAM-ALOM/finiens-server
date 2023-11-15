@@ -34,11 +34,24 @@ repositories {
 	mavenCentral()
 }
 
+configurations {
+	compileOnly {
+		extendsFrom(configurations.annotationProcessor.get())
+	}
+}
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
+	implementation("org.springframework.boot:spring-boot-starter-log4j2:3.1.5")
+
+	implementation("org.springframework.retry:spring-retry:2.0.4")
+	implementation("org.springframework:spring-aspects:6.0.13")
+
+	implementation("org.json:json:20231013")
+
 
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -51,6 +64,11 @@ dependencies {
 
 	//uuid 생성 package
 	implementation("com.github.f4b6a3:ulid-creator:5.2.0")
+}
+
+configurations.forEach {
+	it.exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
+	it.exclude(group = "org.apache.logging.log4j", module = "log4j-to-slf4j")
 }
 
 tasks.withType<KotlinCompile> {
