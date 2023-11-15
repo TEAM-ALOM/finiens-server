@@ -13,6 +13,7 @@ spring:
       ddl-auto: none
   search:
     access_key: ${SEARCH_ACCESS_KEY}
+    url: ${SEARCH_URL}
 #  mail:
 #    host: ${EMAIL_HOST}
 #    port: ${EMAIL_PORT}
