@@ -1,20 +1,24 @@
 package com.example.alom1.finiensserver.domain.destination
 
 import com.example.alom1.finiensserver.domain.core.Coordinate
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
 
-open class Place(
-    placeName:String,
-    placeAddress: String,
-    coordinate: Coordinate,
-    distance: Double
+data class Place(
+    val placeName: String,
+    val placeAddress: String,
+    val coordinate: Coordinate,
+    val distance: Double
 ) {
-    var placeName: String = placeName
-        protected set
-    var placeAddress: String = placeAddress
-        protected set
-    var coordinate: Coordinate = coordinate
-        protected set
-
-    var distance: Double = distance
-        protected set
+    companion object {
+        fun fromDto(placeName:String, placeAddress:String, latitude:Double, longitude:Double, distance: Double) : Place {
+            return Place(
+                placeName=placeName,
+                placeAddress=placeAddress,
+                coordinate = Coordinate(latitude=latitude, longitude = longitude),
+                distance=distance
+            )
+        }
+    }
 }
