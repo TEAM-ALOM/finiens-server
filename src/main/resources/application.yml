@@ -11,7 +11,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
-  search:
+  k_search:
     access_key: ${SEARCH_ACCESS_KEY}
     url: ${SEARCH_URL}
 #  mail:

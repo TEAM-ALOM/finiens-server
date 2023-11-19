@@ -15,9 +15,9 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class DestinationRepositoryImpl @Autowired constructor(
-    @Value("\${spring.search.access_key}")
+    @Value("\${spring.k_search.access_key}")
     private val key: String,
-    @Value("\${spring.search.url}")
+    @Value("\${spring.k_search.url}")
     private val url: String,
 ): DestinationRepository, RestTemplateClient(key=key) {
     private val mapper = jacksonObjectMapper()
