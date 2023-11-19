@@ -18,7 +18,7 @@ abstract class RestTemplateClient(
     @Autowired
     lateinit var restTemplate: RestTemplate
 
-    fun getHeader(): HttpHeaders {
+    private fun getHeader(): HttpHeaders {
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_JSON
         if (key != null) {
