@@ -58,6 +58,8 @@ dependencies {
 
 	runtimeOnly("com.mysql:mysql-connector-j")
 
+	implementation("org.jgrapht:jgrapht-core:1.5.2")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 
