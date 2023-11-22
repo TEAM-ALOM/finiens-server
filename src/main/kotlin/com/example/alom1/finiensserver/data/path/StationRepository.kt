@@ -1,6 +1,6 @@
 package com.example.alom1.finiensserver.data.path
 
-import com.example.alom1.finiensserver.domain.path.Station
+import com.example.alom1.finiensserver.domain.station.Station
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository

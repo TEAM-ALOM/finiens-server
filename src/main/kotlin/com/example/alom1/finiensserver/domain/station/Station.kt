@@ -1,4 +1,4 @@
-package com.example.alom1.finiensserver.domain.path
+package com.example.alom1.finiensserver.domain.station
 
 import com.example.alom1.finiensserver.domain.core.PrimaryKeyStaticEntity
 import com.example.alom1.finiensserver.domain.core.Coordinate

@@ -2,6 +2,7 @@ package com.example.alom1.finiensserver.domain.path
 
 import com.example.alom1.finiensserver.domain.core.PrimaryKeyStaticEntity
 import com.example.alom1.finiensserver.domain.core.Coordinate
+import com.example.alom1.finiensserver.domain.station.Station
 import jakarta.persistence.*
 
 @Entity
