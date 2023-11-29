@@ -8,8 +8,11 @@ import org.json.JSONObject
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class BasicPathInfoDto(
+    // meter 단위
     @get:JsonProperty("distance")
     val distance: Double,
+
+    //초단위 double
     @get:JsonProperty("duration")
     val duration: Double,
 ) {
