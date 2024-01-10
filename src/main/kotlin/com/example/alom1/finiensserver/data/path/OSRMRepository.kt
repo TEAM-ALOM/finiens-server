@@ -16,7 +16,7 @@ class OSRMRepository @Autowired constructor(
 //    val basicPathUrl: String = baseUrl + "foot/"
 
 
-    fun getDetailedPathInfo(departureCoordinate: Coordinate, destinationCoordinate: Coordinate) {
+    fun getDetailedPathInfo(departureCoordinate: Coordinate, destinationCoordinate: Coordinate): DetailedPathInfoDto {
         val url : String = baseUrl + "foot/" +
                 "${departureCoordinate.longitude}," +
                 "${departureCoordinate.latitude};" +
@@ -25,6 +25,8 @@ class OSRMRepository @Autowired constructor(
                 "?overview=full&geometries=geojson"
 
         val dto: DetailedPathInfoDto = DetailedPathInfoDto.fromJson(get(url))
+
+        return dto
     }
 
     fun getBasicPathInfo(departureCoordinate: Coordinate, destinationCoordinate: Coordinate) : BasicPathInfoDto {
