@@ -17,9 +17,13 @@ class PathFinder {
     }
 
     fun findPath(source: Station, target: Station): List<Section> {
-        val dijk : DijkstraShortestPath<Station, Section> = DijkstraShortestPath(subwayGraph)
-        val graphPath: GraphPath<Station, Section> = dijk.getPath(source, target)
+        // 제일 빠른 경로 찾기
+        val shortestPath: GraphPath<Station, Section> =  DijkstraShortestPath.findPathBetween(subwayGraph, source, target)
 
-        return graphPath.edgeList
+        return shortestPath.edgeList
     }
+
+//    fun find() {
+//
+//    }
 }

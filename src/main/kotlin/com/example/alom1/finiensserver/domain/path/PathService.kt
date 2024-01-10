@@ -1,9 +1,6 @@
 package com.example.alom1.finiensserver.domain.path
 
-import com.example.alom1.finiensserver.data.path.BasicPathInfoDto
-import com.example.alom1.finiensserver.data.path.OSRMRepository
-import com.example.alom1.finiensserver.data.path.SectionRepository
-import com.example.alom1.finiensserver.data.path.StationRepository
+import com.example.alom1.finiensserver.data.path.*
 import com.example.alom1.finiensserver.domain.core.Coordinate
 import com.example.alom1.finiensserver.domain.station.Station
 import com.example.alom1.finiensserver.presentation.path.dto.*
@@ -26,11 +23,18 @@ class PathService @Autowired constructor(
         )
     }
 
-    private fun calculateBasicPath(coordinate: Coordinate, station: Station) : BasicPathInfoDto {
-        return osrmRepository.getBasicPathInfo(departureCoordinate = coordinate, destinationCoordinate = station.coordinate)
+    private fun calculateBasicPath(departureCoordinate: Coordinate, destinationCoordinate: Coordinate) : BasicPathInfoDto {
+        return osrmRepository.getBasicPathInfo(departureCoordinate = departureCoordinate, destinationCoordinate = destinationCoordinate)
     }
 
-    fun findPaths(departureCoordinate: Coordinate, destinationCoordinate: Coordinate): List<PathDto> {
+    private fun calculateDetailPath(departureCoordinate: Coordinate, destinationCoordinate: Coordinate) : DetailedPathInfoDto {
+        return osrmRepository.getDetailedPathInfo(
+            departureCoordinate = departureCoordinate,
+            destinationCoordinate = destinationCoordinate
+        )
+    }
+
+    fun findPaths(departureCoordinate: Coordinate, destinationCoordinate: Coordinate): List<TravelPathResponseDto> {
         //출발 정류장 검색
         //현재 위치로 부터 정류장 까지 가는 시간 검색
         val closestStation : List<Station> = getClosestStations(
@@ -38,20 +42,47 @@ class PathService @Autowired constructor(
             destinationCoordinate = destinationCoordinate
         ) // 이건 db
 
-        if (closestStation.size == 1) {
-            calculatePathByFoot()
+
+        val totalPaths: MutableList<TravelPathResponseDto> = mutableListOf()
+
+        val walkingTravelPath: TravelPathResponseDto = findWalkingPath(
+            departureCoordinate=departureCoordinate,
+            destinationCoordinate=destinationCoordinate
+        )
+        totalPaths.add(walkingTravelPath)
+
+        if (closestStation.size != 1) {
+            val subwayTravelPath = findSubwayPath(closestStation, departureCoordinate, destinationCoordinate)
+            totalPaths.add(subwayTravelPath)
         }
 
+        return totalPaths
+    }
+
+    private fun findWalkingPath(departureCoordinate: Coordinate, destinationCoordinate: Coordinate) : TravelPathResponseDto {
+        val basicPathInfo = calculateBasicPath(departureCoordinate = departureCoordinate, destinationCoordinate = destinationCoordinate)
+        val path: MutableList<PathDto> = mutableListOf()
+
+        path.add(
+            FootPathDto(
+                routeCount = 0,
+                footRouteDto = FootRouteDto(distance = basicPathInfo.distance, duration = basicPathInfo.duration.toInt())
+            )
+        )
+
+        return TravelPathResponseDto(path)
+    }
+    private fun findSubwayPath(
+        closestStation: List<Station>, departureCoordinate: Coordinate, destinationCoordinate: Coordinate
+    ): TravelPathResponseDto {
         val departureStation: Station = closestStation[0]
         val departureBasicPathInfo: BasicPathInfoDto =
-            calculateBasicPath(coordinate = departureCoordinate, station = departureStation) // 이건  외부 api
-
-
+            calculateBasicPath(departureCoordinate = departureCoordinate, destinationCoordinate = departureStation.coordinate) // 이건  외부 api
 
 
         val destinationStation: Station = closestStation[1]
         val destinationBasicPathInfo: BasicPathInfoDto =
-            calculateBasicPath(coordinate = destinationCoordinate, station = destinationStation)
+            calculateBasicPath(departureCoordinate = destinationCoordinate, destinationCoordinate = destinationStation.coordinate)
 
         // TODO:: 이걸 어떻게 처리할지 subwaygraph 자체를 db에 집어 넣으면 좋을거 같음
         if (PathFinder.subwayGraph == null) {
@@ -62,8 +93,7 @@ class PathService @Autowired constructor(
 
         val sectionPaths: List<Section> = pathFinder.findPath(departureStation, destinationStation)
 
-
-        val result: MutableList<PathDto> = mutableListOf()
+        val path: MutableList<PathDto> = mutableListOf()
 
         var routeCount = 0
         val departureFootPathDto: FootPathDto = FootPathDto(
@@ -74,7 +104,7 @@ class PathService @Autowired constructor(
             )
         )
         routeCount++
-        result.add(departureFootPathDto)
+        path.add(departureFootPathDto)
 
 
         val transferStations: List<Station> = getTransferStations(sections = sectionPaths)
@@ -85,7 +115,7 @@ class PathService @Autowired constructor(
             destinationStation = destinationStation,
             startCount = routeCount
         ).forEach {
-            result.add(it)
+            path.add(it)
             routeCount++
         }
 
@@ -98,10 +128,20 @@ class PathService @Autowired constructor(
             )
         )
 
-        result.add(destinationFootPathDto)
+        path.add(destinationFootPathDto)
 
-        return result
+        return TravelPathResponseDto(path)
     }
+
+    fun findPathGeometry() {
+
+    }
+
+    private fun pathGeometryWithOutSubway(departureCoordinate: Coordinate, destinationCoordinate: Coordinate) : DetailedPathInfoDto {
+        return calculateDetailPath(departureCoordinate = departureCoordinate, destinationCoordinate = destinationCoordinate)
+    }
+
+    private fun pathGeometryWithSubway() {}
 
     private fun getTransferStations(sections: List<Section>): List<Station> {
         val transferStation: MutableList<Station> = mutableListOf<Station>()
@@ -235,5 +275,4 @@ class PathService @Autowired constructor(
         return result
     }
 
-    private fun calculatePathByFoot() {}
 }
