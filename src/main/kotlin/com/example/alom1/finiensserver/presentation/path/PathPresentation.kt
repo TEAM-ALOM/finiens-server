@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController
 class PathPresentation @Autowired constructor(
     private val pathService: PathService
 ) {
-
     @GetMapping("places/directions")
     fun findPaths(
         @RequestParam("departure-latitude") departureLatitude : Double,
