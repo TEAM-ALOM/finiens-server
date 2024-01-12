@@ -61,7 +61,7 @@ dependencies {
 	implementation("org.jgrapht:jgrapht-core:1.5.2")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.security:spring-security-test")
+//	testImplementation("org.springframework.security:spring-security-test")
 
 
 	//uuid 생성 package
