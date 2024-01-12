@@ -19,6 +19,7 @@ class DestinationPresentation @Autowired constructor(
         @RequestParam latitude: Double,
         @RequestParam longitude: Double
     ): List<Place> {
+        println("start")
         return destinationService.findDestinationByKeyWord(
             keyWord = placeName,
             coordinate = Coordinate(latitude=latitude, longitude=longitude)
