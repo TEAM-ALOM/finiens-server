@@ -39,3 +39,25 @@ spring:
 #    secret-key: ${SMS_API_SECRET_KEY}
 #    url: ${SMS_URL}
 #    username: ${SMS_ID}
+---
+server:
+  port: 8080
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST_P}:${MYSQL_PORT_P}/${MYSQL_DB_P}
+    username: ${MYSQL_USERNAME_P}
+    password: ${MYSQL_PASSWORD_P}
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  k_search:
+    access_key: ${SEARCH_ACCESS_KEY_P}
+    url: ${SEARCH_URL_P}
+
