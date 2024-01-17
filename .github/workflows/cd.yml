@@ -75,4 +75,4 @@ jobs:
             docker rm baromap
             sudo docker pull ${{ secrets.DOCKER_REPO }}/baromap
             docker run -d --name baromap -p 8080:8080 ${{ secrets.DOCKER_REPO }}/baromap
-            docker rmi -f $(docker images -f "dangling=true" -q)
+#            docker rmi -f $(docker images -f "dangling=true" -q)
