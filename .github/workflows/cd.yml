@@ -34,11 +34,11 @@ jobs:
 
       ### CD
       #배포를 위한 prod properties 설정
-      - name: Make application-prod.properties
+      - name: Make application-prod.yml
         run: |
           cd ./src/main/resources
           touch ./application-prod.yml
-          echo "${{ secrets.PROPERTIES_PROD }}" > ./src/main/resources/application-prod.yml
+          echo "${{ secrets.PROPERTIES_PROD }}" > ./application-prod.yml
         shell: bash
 
 
