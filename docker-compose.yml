@@ -5,7 +5,7 @@ services:
     container_name: mysql
     image: mysql/mysql-server:latest
     environment:
-      MYSQL_DATABASE: baromap-database
+      MYSQL_DATABASE: baromap
       MYSQL_USER: root
       MYSQL_PASSWORD: Baromapbaromap$$
       MYSQL_ROOT_HOST: '%'
@@ -17,7 +17,7 @@ services:
     networks:
       - db_network
     restart: always  # 컨테이너 실행 시 재시작
-  yaml:
+  baromap-database:
     build: .
     expose:
     - 8080
