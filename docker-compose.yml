@@ -9,7 +9,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: Baromapbaromap$$
       MYSQL_ROOT_HOST: '%'
-      MYSQL_ROOT_PASSWORD: Baromapbaromap$$
+      MYSQL_ROOT_PASSWORD: rootpwd
     command: # 명령어 설정
       - --default-authentication-plugin=mysql_native_password
     ports: # 접근 포트 설정
