@@ -38,13 +38,13 @@ jobs:
         run: |
           cd ./src/main/resources
           touch ./application-prod.yml
-          echo "MYSQL_USERNAME_P: ${{ secrets.DB_USERNAME }}" >> ./.application-prod.yml
-          echo "MYSQL_PASSWORD_P: ${{ secrets.DB_PW }}" >> ./.application-prod.yml
-          echo "MYSQL_HOST_P: ${{ secrets.DB_HOST }}" >> ./.application-prod.yml 
-          echo "MYSQL_PORT_P: ${{ secrets.DB_HOST_PORT }}" >> ./.application-prod.yml
-          echo "MYSQL_DB_P: ${{ secrets.DB_NAME }}" >> ./.application-prod.yml
-          echo "SEARCH_ACCESS_KEY_P: ${{ secrets.SEARCH_ACCESS_KEY }}" >> ./.application-prod.yml
-          echo "SEARCH_URL_P: ${{ secrets.SEARCH_URL }}" >> ./.application-prod.yml
+          echo "MYSQL_USERNAME_P: ${{ secrets.DB_USERNAME }}" >> ./application-prod.yml
+          echo "MYSQL_PASSWORD_P: ${{ secrets.DB_PW }}" >> ./application-prod.yml
+          echo "MYSQL_HOST_P: ${{ secrets.DB_HOST }}" >> ./application-prod.yml 
+          echo "MYSQL_PORT_P: ${{ secrets.DB_HOST_PORT }}" >> ./application-prod.yml
+          echo "MYSQL_DB_P: ${{ secrets.DB_NAME }}" >> ./application-prod.yml
+          echo "SEARCH_ACCESS_KEY_P: ${{ secrets.SEARCH_ACCESS_KEY }}" >> ./application-prod.yml
+          echo "SEARCH_URL_P: ${{ secrets.SEARCH_URL }}" >> ./application-prod.yml
           cat ./application-prod.yml
         shell: bash
 
