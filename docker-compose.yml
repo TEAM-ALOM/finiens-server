@@ -5,10 +5,11 @@ services:
     container_name: mysql
     image: mysql/mysql-server:latest
     environment:
+      MYSQL_HOST: baromap-database.cpuy4q6gw1dy.ap-northeast-2.rds.amazonaws.com
       MYSQL_DATABASE: baromap
-#      MYSQL_USER: root
-#      MYSQL_PASSWORD: Baromapbaromap$$
-#      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Baromapbaromap$$
+      MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: Baromapbaromap$$
     command: # 명령어 설정
       - --default-authentication-plugin=mysql_native_password
