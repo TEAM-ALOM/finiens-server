@@ -90,8 +90,6 @@ jobs:
             docker stop baromap
             docker rm baromap
             sudo docker pull ${{ secrets.DOCKER_REPO }}/baromap
-#            cd ./src
-#            cd ..
             pwd
             ls -al
             sudo docker-compose up -d
