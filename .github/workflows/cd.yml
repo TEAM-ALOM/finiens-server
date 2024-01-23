@@ -37,6 +37,8 @@ jobs:
       - name: Make application-prod.yml
         run: |
           cd ./src/main/resources
+          pwd
+          ls -al
           touch ./application-prod.yml
           echo "MYSQL_USERNAME_P: ${{ secrets.DB_USERNAME }}" >> ./application-prod.yml
           echo "MYSQL_PASSWORD_P: ${{ secrets.DB_PW }}" >> ./application-prod.yml
