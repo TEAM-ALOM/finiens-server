@@ -16,9 +16,7 @@ services:
     depends_on:
       - baromap-server
   baromap-server:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     expose:
     - 8080
     environment:
