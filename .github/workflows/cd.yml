@@ -87,7 +87,7 @@ jobs:
             cd ..
             pwd
             ls -al
-            sudo docker-compose -f $COMPOSE up -d
+            sudo docker-compose up -d
 #            sudo docker-compose
 #            docker run -d --name baromap -p 8080:8080 ${{ secrets.DOCKER_REPO }}/baromap
 #            docker rmi -f $(docker images -f "dangling=true" -q)
