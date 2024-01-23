@@ -1,22 +1,18 @@
 version: "3"
 
 services:
-  database:
-    container_name: mysql
-    image: mysql/mysql-server:latest
-    environment:
-      MYSQL_DATABASE: baromap
-      MYSQL_USER: root
-      MYSQL_PASSWORD: Baromapbaromap$$
-      MYSQL_ROOT_HOST: '%'
-      MYSQL_ROOT_PASSWORD: Baromapbaromap$$
-    command: # 명령어 설정
-      - --default-authentication-plugin=mysql_native_password
-    ports: # 접근 포트 설정
-      - "3306:3306" # Host:Container
-    networks:
-      - db_network
-    restart: always  # 컨테이너 실행 시 재시작
+  nginx:
+    image: nginx:1.15-alpine
+    restart: unless-stopped
+    volumes:
+      - ./data/nginx:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/log/nginx/mytamla:/var/log/nginx/mytamla
+    ports:
+      - "80:80"
+      - "443:443"
+    command:
+      "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   baromap-server:
     build:
       context: .
@@ -29,7 +25,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://baromap-database.cpuy4q6gw1dy.ap-northeast-2.rds.amazonaws.com:3306/baromap
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: Baromapbaromap$$
-
+      SPRING_PROFILES_ACTIVE: prod
 networks: # 커스텀 네트워크 추가
   db_network: # 네트워크 이름
     driver: bridge
