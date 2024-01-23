@@ -47,6 +47,8 @@ jobs:
           echo "MYSQL_DB_P: ${{ secrets.DB_NAME }}" >> ./application-prod.yml
           echo "SEARCH_ACCESS_KEY_P: ${{ secrets.SEARCH_ACCESS_KEY }}" >> ./application-prod.yml
           echo "SEARCH_URL_P: ${{ secrets.SEARCH_URL }}" >> ./application-prod.yml
+          pwd
+          ls -al
           cat ./application-prod.yml
         shell: bash
 
