@@ -13,19 +13,19 @@ services:
       - "443:443"
     command:
       "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    depends_on:
+      - baromap-server
   baromap-server:
     build:
       context: .
       dockerfile: Dockerfile
     expose:
     - 8080
-    depends_on:
-      - database
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://baromap-database.cpuy4q6gw1dy.ap-northeast-2.rds.amazonaws.com:3306/baromap
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: Baromapbaromap$$
       SPRING_PROFILES_ACTIVE: prod
-networks: # 커스텀 네트워크 추가
-  db_network: # 네트워크 이름
-    driver: bridge
+#networks: # 커스텀 네트워크 추가
+#  db_network: # 네트워크 이름
+#    driver: bridge
