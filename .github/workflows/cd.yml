@@ -81,6 +81,8 @@ jobs:
             docker stop baromap
             docker rm baromap
             sudo docker pull ${{ secrets.DOCKER_REPO }}/baromap
+            pwd
+            ls -al
             sudo docker-compose up
 #            sudo docker-compose
 #            docker run -d --name baromap -p 8080:8080 ${{ secrets.DOCKER_REPO }}/baromap
