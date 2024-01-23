@@ -58,6 +58,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL8Dialect
   k_search:
     access_key: ${SEARCH_ACCESS_KEY_P}
     url: ${SEARCH_URL_P}
