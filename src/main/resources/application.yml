@@ -50,9 +50,12 @@ spring:
       on-profile: prod
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST_P}:${MYSQL_PORT_P}/${MYSQL_DB_P}
-    username: ${MYSQL_USERNAME_P}
-    password: ${MYSQL_PASSWORD_P}
+    url: jdbc:mysql://baromap-database.cpuy4q6gw1dy.ap-northeast-2.rds.amazonaws.com:3306/baromap
+#    url: jdbc:mysql://${MYSQL_HOST_P}:${MYSQL_PORT_P}/${MYSQL_DB_P}
+#    username: ${MYSQL_USERNAME_P}
+    username: root
+#    password: ${MYSQL_PASSWORD_P}
+    password: Baromapbaromap$$
   jpa:
     generate-ddl: false
     show-sql: true
